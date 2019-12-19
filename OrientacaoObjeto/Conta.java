@@ -1,15 +1,58 @@
 class Conta{
-     String titular;
-     int numero;
-     String agencia;
-     double saldo;
+     private String titular;
+     private int numero;
+     private String agencia;
+     private double saldo;
      Data dataAbertura;
-     String CPF;
+     private String CPF;
+     private static int qtdeContas=0;
      public static void main(String[] args){
 
      }
+     public String getTitular(){
+         return this.titular;
+     }
+
+     public double getSaldo(){
+         return this.saldo;
+     }
+
+     public double getNumero(){
+        return this.numero;
+    }
+    public String getCPF(){
+        return this.CPF;
+    }
+    public String getAgencia(){
+        return this.agencia;
+    }
+    public String getQtdeContas(){
+        String qtde = "\n" + this.qtdeContas;
+        return qtde;
+    }
+
+    String getDadosConta(){
+        String dados = "\n\n Titular: " + this.titular;
+        dados += "\n CPF: " + this.CPF;
+        dados += "\n Número: " + this.numero;
+        dados += "\n Agencia: " + this.agencia;
+        dados += "\n Data de aberura: " + this.dataAbertura.getDataAbertura();
+        dados += "\n saldo: " + this.saldo;
+        dados += "\n Quantidade de contas: " + this.qtdeContas;
+        return dados;
+    }
     
-     void saca(double valor){
+    public Conta(String titular,String CPF,String agencia){
+        this.saldo = 0;
+        this.titular = titular;
+        this.CPF = CPF;
+        this.agencia  = agencia;
+        this.numero = qtdeContas+1;
+        this.dataAbertura = new Data();
+        qtdeContas++;
+        
+    }
+    void saca(double valor){
          if(this.saldo-valor<=0){
             System.out.printf("\nA conta não possui saldo suficiente");
          }
@@ -26,33 +69,30 @@ class Conta{
         System.out.printf("\nO saldo atual é %f",this.saldo);
      }
      void calculaRendimento(){
-
          double rendimento = this.saldo*0.1;
          System.out.printf("o rendimento é = %f",rendimento);
      }
-     String recuperaDadosParaImpressao(){
-         String dados = "Titular: " + this.titular;
-         dados += "\n CPF: " + this.CPF;
-         dados += "\n Número: " + this.numero;
-         dados += "\n Agencia: " + this.agencia;
-         dados += "\n Data de aberura: " + this.dataAbertura.formatada();
-         dados += "\n saldo: " + this.saldo;
-         return dados;
-     }
+
 
 
 
 }
 
 class Data{
-    String dia;
-    String mes;
-    String ano;
-    String formatada(){
+    private String dia;
+    private String mes;
+    private String ano;
+    String getDataAbertura(){
         String data = this.dia;
         data += "/" + this.mes;
         data += "/" + this.ano;
          return data;   
+    }
+    public Data(){
+        this.dia="18";
+        this.mes="12";
+        this.ano="2019";
+
     }
 
 }
